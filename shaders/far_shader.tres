@@ -1,0 +1,62 @@
+[gd_resource type="VisualShader" load_steps=5 format=3 uid="uid://bbxjngeu5gned"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_4bv48"]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeColorFunc" id="VisualShaderNodeColorFunc_oqju4"]
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_oqju4"]
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_4bv48"]
+parameter_name = "fading"
+hint = 1
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform float fading : hint_range(0.0, 1.0);
+
+
+
+void fragment() {
+// Input:2
+	vec4 n_out2p0 = COLOR;
+
+
+	vec3 n_out3p0;
+// ColorFunc:3
+	{
+		vec3 c = vec3(n_out2p0.xyz);
+		float max1 = max(c.r, c.g);
+		float max2 = max(max1, c.b);
+		n_out3p0 = vec3(max2, max2, max2);
+	}
+
+
+// FloatParameter:6
+	float n_out6p0 = fading;
+
+
+// VectorOp:5
+	vec3 n_out5p0 = n_out3p0 + vec3(n_out6p0);
+
+
+// Output:0
+	COLOR.rgb = n_out5p0;
+
+
+}
+"
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(743, 271)
+nodes/fragment/2/node = SubResource("VisualShaderNodeInput_4bv48")
+nodes/fragment/2/position = Vector2(-267.641, 262.136)
+nodes/fragment/3/node = SubResource("VisualShaderNodeColorFunc_oqju4")
+nodes/fragment/3/position = Vector2(138.473, 334.504)
+nodes/fragment/5/node = SubResource("VisualShaderNodeVectorOp_oqju4")
+nodes/fragment/5/position = Vector2(435, 343)
+nodes/fragment/6/node = SubResource("VisualShaderNodeFloatParameter_4bv48")
+nodes/fragment/6/position = Vector2(52, 568)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 0, 3, 0, 5, 0, 5, 0, 0, 0, 6, 0, 5, 1)

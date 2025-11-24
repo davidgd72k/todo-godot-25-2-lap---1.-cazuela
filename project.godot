@@ -12,5 +12,12 @@ config_version=5
 
 config/name="TodoGodot25-2Lap - 1. Cazuela"
 config/tags=PackedStringArray("todogodot25_2lap")
+run/main_scene="uid://c5dsfcqkvitub"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=480
+window/stretch/mode="viewport"

@@ -1,0 +1,96 @@
+[gd_scene load_steps=7 format=3 uid="uid://7lx8i7qedqw3"]
+
+[ext_resource type="Shader" uid="uid://bcaj4jy183ty1" path="res://shaders/tint_with_gradient.tres" id="1_4k7ef"]
+[ext_resource type="Texture2D" uid="uid://b0b4kn3judt01" path="res://assets/img/bg_arroz_horno.jpg" id="1_6jsh8"]
+[ext_resource type="Script" uid="uid://dcxfbryk4efe" path="res://scenes/title_scene.gd" id="1_l8sac"]
+[ext_resource type="Script" uid="uid://56jm0aoi6ep7" path="res://scenes/title_scene_button_container.gd" id="3_4k7ef"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bq8jb"]
+shader = ExtResource("1_4k7ef")
+shader_parameter/TexTint = Color(0, 0, 0, 1)
+shader_parameter/GradTint = Color(0.2967223, 0.30547795, 0.26266846, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_l5n7b"]
+font_size = 32
+font_color = Color(1, 0, 0, 1)
+
+[node name="TitleScene" type="Node"]
+script = ExtResource("1_l8sac")
+
+[node name="Anchored" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BgFoto" type="TextureRect" parent="Anchored"]
+material = SubResource("ShaderMaterial_bq8jb")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_6jsh8")
+stretch_mode = 2
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ShaderRect" type="ColorRect" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="UI"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 51.0
+offset_bottom = 101.0
+grow_horizontal = 2
+text = "Cazuela juego"
+label_settings = SubResource("LabelSettings_l5n7b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonContainer" type="VBoxContainer" parent="UI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -151.0
+offset_top = -259.0
+offset_right = 151.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+script = ExtResource("3_4k7ef")
+
+[node name="Play" type="Button" parent="UI/ButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Jugar"
+
+[node name="HowToPlay" type="Button" parent="UI/ButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Como jugar"
+
+[node name="Credit" type="Button" parent="UI/ButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Creditos"
+
+[node name="Exit" type="Button" parent="UI/ButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Salir
+"
